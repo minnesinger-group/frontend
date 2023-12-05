@@ -1,0 +1,15 @@
+[submodule "local_modules/components"]
+	path = local_modules/components
+	url = https://github.com/minnesinger-group/components
+[submodule "local_modules/extensions"]
+	path = local_modules/extensions
+	url = https://github.com/minnesinger-group/extensions
+[submodule "local_modules/form"]
+	path = local_modules/form
+	url = https://github.com/minnesinger-group/form
+[submodule "local_modules/math"]
+	path = local_modules/math
+	url = https://github.com/minnesinger-group/math
+[submodule "local_modules/transofmations"]
+	path = local_modules/transofmations
+	url = https://github.com/minnesinger-group/transofmations

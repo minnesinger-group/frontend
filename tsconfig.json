@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "module": "ES6",
+    "target": "ES6",
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "paths": {
+      "@icons*": ["./static/icons/*"],
+      "@/*": ["./local_modules/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["svg.d.ts", "json.d.ts", "client/src", "uploadForm/src"]
+}
