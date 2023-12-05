@@ -9,10 +9,10 @@ const SRC_DIR = 'src';
 const DIST_DIR = 'dist';
 const STATIC_DIR = 'static';
 const SCRIPT_ENTRY_POINT = 'index.tsx';
-const SCRIPT_OUTPUT = 'main.js';
+const SCRIPT_OUTPUT = 'index.js';
 const HTML_ENTRY_POINT = 'index.html';
-const HTML_OUTPUT = 'main.html';
-const STYLES_OUTPUT = 'main.css';
+const HTML_OUTPUT = 'index.html';
+const STYLES_OUTPUT = 'index.css';
 
 module.exports = (env, argv, root) => ({
   entry: path.resolve(root || __dirname, SRC_DIR, SCRIPT_ENTRY_POINT),
