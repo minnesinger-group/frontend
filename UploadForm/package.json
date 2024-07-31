@@ -1,6 +1,6 @@
 {
-  "name": "minnesinger.upload-form",
-  "version": "0.0.0",
+  "name": "minnesinger.frontend.upload-form",
+  "version": "0.0.1",
   "description": "Form page for uploading new tracks",
   "main": "src/index.tsx",
   "dependencies": {
