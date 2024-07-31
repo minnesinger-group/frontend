@@ -99,14 +99,16 @@ const TrackUploadForm: FunctionComponent = () => {
           previewInput={setup.preview.input}
           onResetPreview={onResetPreview}
         />
-        <Label setup={setup.title.label}>Title</Label>
-        <TextInput setup={setup.title.input} />
-        <Label setup={setup.artists.label}>Artists</Label>
-        <TextInput setup={setup.artists.input} />
-        <Label setup={setup.album.label}>Album</Label>
-        <TextInput setup={setup.album.input} />
-        <Label setup={setup.year.label}>Year</Label>
-        <NumberInput setup={setup.year.input} />
+        <div class="fields-wrapper">
+          <Label setup={setup.title.label}>Title</Label>
+          <TextInput setup={setup.title.input} />
+          <Label setup={setup.artists.label}>Artists</Label>
+          <TextInput setup={setup.artists.input} />
+          <Label setup={setup.album.label}>Album</Label>
+          <TextInput setup={setup.album.input} />
+          <Label setup={setup.year.label}>Year</Label>
+          <NumberInput setup={setup.year.input} />
+        </div>
         <button type="submit">Upload</button>
       </Form>
     </div>
