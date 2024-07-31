@@ -1,0 +1,68 @@
+@import "theme.styl"
+
+html
+body
+#app
+  margin 0
+  height 100%
+  width 100%
+  display flex
+  justify-content center
+  align-items center
+  font-family 'Ysabeau Infant', sans-serif
+  background-color var(--background-color)
+
+  *
+    box-sizing border-box
+
+.form-root
+  display flex
+  width 100%
+  max-width 450px
+
+  .form-wrapper
+    display flex
+    flex-direction column
+    width 100%
+
+    label
+      font-size 24px
+      line-height 26px
+      font-weight 500
+      color var(--text-color)
+      margin-bottom 10px
+
+    input[type = "text"]
+    input[type = "number"]
+      width 100%
+      padding 10px 14px
+      font-size 18px
+      font-weight 400
+      color var(--text-color)
+      border-radius 10px
+      border 2px solid var(--secondary-color)
+      margin-bottom 14px
+      transition border-color 0.3s ease-in-out
+      background-color var(--background-color)
+
+      &:focus
+        outline none
+        border-color var(--primary-color)
+
+    button
+      height 42px
+      margin-top 20px
+      background-color var(--primary-color)
+      border none
+      border-radius 10px
+      font-size 18px
+      font-weight 500
+      color var(--text-color)
+      cursor pointer
+      transition background-color 0.3s ease-in-out
+
+      &:hover
+        background-color var(--secondary-color)
+
+      &:focus
+        outline none

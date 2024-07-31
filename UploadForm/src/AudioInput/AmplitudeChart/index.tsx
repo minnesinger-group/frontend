@@ -5,7 +5,7 @@ import { memo } from 'preact/compat';
 import { interpolate } from '@/math/lagrangeInterpolation';
 import { UploadedFile } from '@/form/components/File';
 
-import './amplitudeChart.styl';
+import './amplitude-chart.styl';
 
 const audioContext = new AudioContext();
 
@@ -121,7 +121,7 @@ const AmplitudeChart: FunctionComponent<AmplitudeGraphProps> = memo(({ audioFile
   }, []);
 
   return (
-    <div class="amplitudeGraphRoot">
+    <div class="amplitude-graph-root">
       <style>
         {`
           ${getPolygonAnimationDescription(

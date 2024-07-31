@@ -6,6 +6,8 @@ import { FileInput } from '@/form/components';
 import { FileInputProps, UploadedFile } from '@/form/components/File';
 import { HelpIcon, ResetIcon } from '../index';
 
+import './preview-input.styl';
+
 import MusicFileIcon from '@icons/music-file.svg';
 
 export interface PreviewInputProps {
@@ -28,36 +30,31 @@ const PreviewInput: FunctionComponent<PreviewInputProps> = memo(
     };
 
     return (
-      <div class="previewInputWrapper">
-        <FileInput setup={previewInput}>
+      <div class="preview-input-root">
+        <FileInput setup={previewInput} class="preview-input-field">
           <>
             {preview && previewImage ? (
               <img src={`data:${preview.type};base64,${previewImage}`} alt={preview.name} />
             ) : (
               <MusicFileIcon />
             )}
-            <p
-              class={`previewTitle ${isAudioDefault || !preview ? 'clickable' : ''}`}
-              onClick={e =>
-                (e.target as Element).tagName !== 'P' && preview && handleResetPreview(e)
-              }
-            >
+            <p class={`preview-title ${isAudioDefault || !preview ? 'clickable' : ''}`}>
               {preview ? (
                 isAudioDefault ? (
                   <>
                     Default (click here to change)
-                    <ResetIcon class="removePreviewIcon" />
+                    <ResetIcon class="remove-preview-icon" onClick={handleResetPreview} />
                   </>
                 ) : (
                   <>
                     {preview.name}
-                    <ResetIcon class="removePreviewIcon" />
+                    <ResetIcon class="remove-preview-icon" onClick={handleResetPreview} />
                   </>
                 )
               ) : (
                 <>
                   Track preview is not chosen
-                  <HelpIcon class="previewTooltipIcon" text="Image file in any format" />
+                  <HelpIcon class="preview-tooltip-icon" text="Image file in any format" />
                 </>
               )}
             </p>

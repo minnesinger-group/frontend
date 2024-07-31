@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "uploadForm/dist",
+    "public": "UploadForm/dist",
     "ignore": [
       "firebase.json",
       "**/.*",

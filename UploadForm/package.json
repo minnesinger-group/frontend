@@ -1,0 +1,15 @@
+{
+  "name": "minnesinger.upload-form",
+  "version": "0.0.0",
+  "description": "Form page for uploading new tracks",
+  "main": "src/index.tsx",
+  "dependencies": {
+    "id3-parser": "^3.0.0",
+    "mime-db": "^1.52.0"
+  },
+  "scripts": {
+    "build:dev": "webpack --mode development --config webpack.config.js",
+    "serve": "webpack serve --mode development --config webpack.config.js",
+    "build": "webpack --mode production --config webpack.config.js"
+  }
+}

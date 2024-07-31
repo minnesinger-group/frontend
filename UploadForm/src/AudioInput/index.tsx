@@ -1,12 +1,14 @@
-import { FunctionComponent } from 'preact';
+import { ComponentProps, FunctionComponent } from 'preact';
 import { memo } from 'preact/compat';
 
-import InlineIcon from '@/components/inlineIcon';
-import TooltipIcon from '@/components/tooltipIcon';
+import InlineIcon from '@/components/InlineIcon';
+import TooltipIcon from '@/components/TooltipIcon';
 import { FileInput } from '@/form/components';
 import { FileInputProps, UploadedFile } from '@/form/components/File';
-import AmplitudeChart from './amplitudeChart';
-import PreviewInput, { PreviewInputProps } from './previewInput';
+import AmplitudeChart from './AmplitudeChart';
+import PreviewInput, { PreviewInputProps } from './PreviewInput';
+
+import './audio-input.styl';
 
 import CancelIcon from '@icons/delete.svg';
 
@@ -16,8 +18,8 @@ export interface AudioInputProps extends Omit<PreviewInputProps, 'isAudioDefault
   onResetAudio: () => Promise<void>;
 }
 
-export const ResetIcon: FunctionComponent<{ class?: string }> = ({ class: className }) => (
-  <InlineIcon class={`${className ? className : ''}`}>
+export const ResetIcon: FunctionComponent<ComponentProps<'span'>> = props => (
+  <InlineIcon {...props}>
     <CancelIcon />
   </InlineIcon>
 );
@@ -42,8 +44,8 @@ const AudioInput: FunctionComponent<AudioInputProps> = memo(
     };
 
     return (
-      <FileInput setup={audioInput} onDragClass="hovered">
-        <div class="audioLabelInnerWrapper">
+      <FileInput setup={audioInput} class="audio-input-field" onDragClass="hovered">
+        <div class="label-inner-wrapper">
           <AmplitudeChart audioFile={audio} />
           <PreviewInput
             preview={preview}
@@ -54,19 +56,16 @@ const AudioInput: FunctionComponent<AudioInputProps> = memo(
             onResetPreview={onResetPreview}
           />
         </div>
-        <p
-          class={`audioTitle ${audio ? '' : 'clickable'}`}
-          onClick={e => audio && handleResetAudio(e)}
-        >
+        <p class={`audio-title ${audio ? '' : 'clickable'}`}>
           {audio ? (
             <>
               {audio.name}
-              <ResetIcon class="removeAudioIcon" />
+              <ResetIcon class="remove-audio-icon" onClick={handleResetAudio} />
             </>
           ) : (
             <>
               Track audio file is not chosen
-              <HelpIcon class="audioTooltipIcon" text="Acceptable audio file formats: mp3" />
+              <HelpIcon class="audio-tooltip-icon" text="Acceptable audio file formats: mp3" />
             </>
           )}
         </p>

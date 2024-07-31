@@ -5,7 +5,7 @@ import parse from 'id3-parser';
 import { Form, useForm } from '@/form';
 import { Label, TextInput, NumberInput } from '@/form/components';
 import { buildUploadedFile, UploadedFile } from '@/form/components/File';
-import AudioInput from './audioInput';
+import AudioInput from './AudioInput';
 import mimeDB from '../mime-images.json';
 
 import './index.styl';
@@ -89,8 +89,8 @@ const TrackUploadForm: FunctionComponent = () => {
   }, [setFieldValue]);
 
   return (
-    <div class="formRoot">
-      <Form setup={setup.form} class="formWrapper">
+    <div class="form-root">
+      <Form setup={setup.form} class="form-wrapper">
         <AudioInput
           audio={audio}
           audioInput={setup.audio.input}
