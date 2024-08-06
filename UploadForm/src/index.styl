@@ -1,8 +1,7 @@
-@import "theme.styl"
-@require "screens"
-
-darken(color, value)
-  color-mix(unquote('in srgb'), color, rgb(0, 0, 0) value * 100%)
+@import "colors.styl"
+@require "utils/screens"
+@require "inputs"
+@require "buttons"
 
 html
   font-family system-ui
@@ -46,46 +45,15 @@ body
       flex-direction column
 
       label
-        font-size 18px
-        line-height 20px
-        font-stretch 105%
-        font-weight 300
-        color var(--text-color)
+        @extend .input-label
         margin-bottom 8px
 
       input[type = "text"]
       input[type = "number"]
+        @extend .input-field, .input-field-text
         width 100%
-        padding 10px 14px
-        font-size 20px
-        line-height 24px
-        font-weight 300
-        color var(--text-color)
-        border-radius 10px
-        border 2px solid var(--secondary-color)
         margin-bottom 20px
-        transition border-color 0.3s ease-in-out
-        background-color var(--background-color)
-
-        &:focus
-          outline none
-          border-color var(--primary-color)
 
     button
-      padding 12px
+      @extend .primary-button
       margin-top 20px
-      background-color var(--primary-color)
-      border none
-      border-radius 10px
-      font-size 20px
-      line-height 24px
-      font-weight 400
-      color var(--text-color)
-      cursor pointer
-      transition background-color 0.3s ease-in-out
-
-      &:hover
-        background-color darken(var(--primary-color), 0.25)
-
-      &:focus
-        outline none

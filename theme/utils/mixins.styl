@@ -1,3 +1,9 @@
+darken(color, value)
+  color-mix(unquote('in srgb'), color, rgb(0, 0, 0) value * 100%)
+
+lighten(color, value)
+  color-mix(unquote('in srgb'), color, rgb(255, 255, 255) value * 100%)
+
 withAnimatedUnderline()
   position relative
   cursor pointer

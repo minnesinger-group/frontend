@@ -44,7 +44,7 @@ module.exports = (env, argv, root) => ({
             loader: 'stylus-loader',
             options: {
               stylusOptions: {
-                paths: [path.resolve(__dirname, 'common', 'styles')],
+                paths: [path.resolve(__dirname, 'theme')],
               },
             },
           },

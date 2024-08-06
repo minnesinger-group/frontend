@@ -47,10 +47,10 @@ const TrackUploadForm: FunctionComponent = () => {
         const previewFile =
           metadata.image && metadata.image.data
             ? buildUploadedFile(
-                getImageFileFullName(audio.nameWithoutExtension, metadata.image.mime),
-                metadata.image.mime,
-                new Uint8Array(metadata.image.data),
-              )
+              getImageFileFullName(audio.nameWithoutExtension, metadata.image.mime),
+              metadata.image.mime,
+              new Uint8Array(metadata.image.data),
+            )
             : null;
 
         console.log('previewFile: ', previewFile);

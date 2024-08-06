@@ -1,0 +1,23 @@
+@require "utils/mixins"
+
+.primary-button
+  padding 12px
+  background-color var(--primary-color)
+  color var(--text-color)
+  font-size 20px
+  line-height 24px
+  font-weight 400
+  font-family inherit
+  border none
+  border-radius 10px
+  cursor pointer
+  transition background-color 0.1s ease-in-out, box-shadow 0.3s ease-in-out
+
+  &:hover
+    box-shadow 0 0 8px darken(var(--primary-color), 0.25)
+
+  &:active
+    background-color darken(var(--primary-color), 0.25)
+
+  &:focus
+    outline none
