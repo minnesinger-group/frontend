@@ -1,0 +1,161 @@
+@import "colors.styl"
+@require "utils/screens"
+@require "utils/mixins"
+@require "inputs"
+@require "buttons"
+
+html
+  font-family system-ui
+
+html
+body
+  margin 0
+  height 100%
+  background-color var(--background-color)
+
+#app
+  min-height 100%
+  width 100%
+  display flex
+  justify-content center
+  align-items center
+
+  *
+    box-sizing border-box
+
+.form-root
+  display grid
+  grid-template-rows 70vh
+  grid-template-columns minmax(min-content, 450px) minmax(min-content, 450px)
+  box-shadow 0 0 10px darken(var(--background-color), 0.25)
+  border-radius 10px
+  overflow hidden
+
+  .primary-mask
+    display grid
+    grid-template-rows 1fr
+    grid-template-columns 1fr
+    grid-column 1 / 2
+    grid-row 1 / 2
+    z-index 2
+    background-color var(--primary-color)
+    overflow hidden
+    transition transform 0.5s ease-in-out
+
+    .info-panel
+      transition transform 0.5s ease-in-out
+      grid-column 1 / 2
+      grid-row 1 / 2
+
+    &.register-active
+      .info-panel
+        &.register
+          transform translate(100%)
+
+    &.login-active
+      transform translate(100%)
+
+      .info-panel
+        &.login
+          transform translate(-100%)
+
+    .info-panel
+      display flex
+      flex-direction column
+      align-items center
+      justify-content center
+      padding 40px
+
+      h3
+        font-size 28px
+        line-height 30px
+        font-weight 800
+        color var(--text-color)
+        text-align center
+        margin 0
+
+      p
+        font-size 18px
+        line-height 20px
+        font-weight 300
+        color var(--text-color)
+        text-align center
+        margin 40px 0
+
+      a
+        padding 12px 36px
+        background-color transparent
+        color var(--text-color)
+        font-size 20px
+        line-height 24px
+        font-weight 400
+        font-family inherit
+        text-decoration none
+        border-radius 10px
+        border 2px solid var(--text-color)
+        transition color 0.1s ease-in-out, border-color 0.1s ease-in-out, background-color 0.3s ease-in-out
+
+        &:hover
+          background-color darken(var(--primary-color), 0.1)
+
+        &:active
+          color darken(var(--text-color), 0.15)
+          border-color darken(var(--text-color), 0.15)
+
+  .form-wrapper
+    display flex
+    overflow hidden
+
+    &.login
+      grid-column 1 / 2
+      grid-row 1 / 2
+
+      .form-content
+        transform translate(100%)
+
+      &.active
+        .form-content
+          transform translate(0)
+
+    &.register
+      grid-column 2 / 3
+      grid-row 1 / 2
+
+      .form-content
+        transform translate(-100%)
+
+      &.active
+        .form-content
+          transform translate(0)
+
+    .form-content
+      flex 1
+      display flex
+      flex-direction column
+      justify-content center
+      padding 40px
+      transition transform 0.5s ease-in-out
+
+      h2
+        font-size 28px
+        line-height 30px
+        font-weight 800
+        color var(--text-color)
+        text-align center
+        margin 0 0 40px 0
+
+      .fields-wrapper
+        display flex
+        flex-direction column
+
+        .field-label
+          @extend .input-label
+          margin-bottom 8px
+
+        .text-input
+          @extend .input-field, .input-field-text
+          margin-bottom 20px
+
+      button
+        @extend .primary-button
+        margin-top 20px

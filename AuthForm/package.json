@@ -1,0 +1,12 @@
+{
+  "name": "minnesinger.frontend.auth-form",
+  "version": "0.0.1",
+  "description": "Page for authorization",
+  "main": "src/index.tsx",
+  "dependencies": {},
+  "scripts": {
+    "build:dev": "webpack --mode development --config webpack.config.js",
+    "serve": "webpack serve --mode development --config webpack.config.js",
+    "build": "webpack --mode production --config webpack.config.js"
+  }
+}
