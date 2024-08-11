@@ -23,3 +23,18 @@
   &:focus
     outline none
     border-color var(--primary-color)
+
+  &[data-valid=false]
+    border-color var(--error-color)
+
+.error-hint
+  color var(--error-color)
+  font-size 12px
+  line-height 14px
+  font-weight 300
+  text-align right
+  opacity 0
+  transition opacity 0.3s ease-in-out
+
+  &[data-active=true]
+    opacity 1

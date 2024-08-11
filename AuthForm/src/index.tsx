@@ -1,58 +1,10 @@
 import { FunctionComponent, render } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 
-import { Form, useForm } from '@/form';
-import { Label, TextInput } from '@/form/components';
-import PasswordField from './PasswordField';
+import RegisterForm from './components/RegisterForm';
+import SignInForm from './components/SignInForm';
 
 import './index.styl';
-
-const SignInForm: FunctionComponent = () => {
-  const { setup } = useForm(fn => ({
-    login: fn({ type: 'Text' }),
-    password: fn({ type: 'Text' }),
-  }), values => {
-    console.log('Login: ', values);
-  }, []);
-
-  return (
-    <Form setup={setup.form} class="form-content">
-      <h2>Sign In</h2>
-      <div class="fields-wrapper">
-        <Label setup={setup.login.label} class="field-label">Login</Label>
-        <TextInput setup={setup.login.input} class="text-input" />
-        <Label setup={setup.password.label} class="field-label">Password</Label>
-        <PasswordField setup={setup.password.input} labelSetup={setup.password.label} />
-      </div>
-      <button type="submit">Sign In</button>
-    </Form>
-  );
-};
-
-const RegisterForm: FunctionComponent = () => {
-  const { setup } = useForm(fn => ({
-    login: fn({ type: 'Text' }),
-    password: fn({ type: 'Text' }),
-    repeatedPassword: fn({ type: 'Text' }),
-  }), values => {
-    console.log('Register: ', values);
-  }, []);
-
-  return (
-    <Form setup={setup.form} class="form-content">
-      <h2>Create Account</h2>
-      <div class="fields-wrapper">
-        <Label setup={setup.login.label} class="field-label">Login</Label>
-        <TextInput setup={setup.login.input} class="text-input" />
-        <Label setup={setup.password.label} class="field-label">Password</Label>
-        <PasswordField setup={setup.password.input} labelSetup={setup.password.label} />
-        <Label setup={setup.repeatedPassword.label} class="field-label">Confirm Password</Label>
-        <PasswordField setup={setup.repeatedPassword.input} labelSetup={setup.repeatedPassword.label} />
-      </div>
-      <button type="submit">Sign Up</button>
-    </Form>
-  );
-};
 
 const SignInInfoPanel: FunctionComponent = () => {
   return (
