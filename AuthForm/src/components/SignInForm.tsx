@@ -16,13 +16,14 @@ const signInValidator = buildValidator(signInForm, {
 });
 
 const SignInForm: FunctionComponent = () => {
-  const { setup } = useForm(
-    signInForm,
-    values => {
+  const { setup } = useForm({
+    id: 'login',
+    config: signInForm,
+    onSubmit: values => {
       console.log('Login: ', values);
     },
-    { submitValidator: signInValidator },
-  );
+    submitValidator: signInValidator,
+  });
 
   return (
     <Form setup={setup.form} class="form-content">

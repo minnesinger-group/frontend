@@ -41,16 +41,15 @@ const registerSubmitValidator = buildValidator(registerForm, {
 });
 
 const RegisterForm: FunctionComponent = () => {
-  const { setup } = useForm(
-    registerForm,
-    values => {
+  const { setup } = useForm({
+    id: 'register',
+    config: registerForm,
+    onSubmit: values => {
       console.log('Register: ', values);
     },
-    {
-      submitValidator: registerSubmitValidator,
-      liveValidator: registerLiveValidator,
-    },
-  );
+    submitValidator: registerSubmitValidator,
+    liveValidator: registerLiveValidator,
+  });
 
   return (
     <Form setup={setup.form} class="form-content">

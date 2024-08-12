@@ -41,13 +41,14 @@ const trackUploadValidator = buildValidator(trackUploadForm, {
 });
 
 const TrackUploadForm: FunctionComponent = () => {
-  const { setup, values, setFieldValue, setFieldValues } = useForm(
-    trackUploadForm,
-    async values => {
+  const { setup, values, setFieldValue, setFieldValues } = useForm({
+    id: 'track-upload',
+    config: trackUploadForm,
+    onSubmit: async values => {
       console.log('Upload: ', values);
     },
-    { submitValidator: trackUploadValidator },
-  );
+    submitValidator: trackUploadValidator,
+  });
 
   useEffect(() => {
     const parseMetadata = async (audio: UploadedFile) => {
