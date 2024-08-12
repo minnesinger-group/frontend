@@ -30,11 +30,11 @@ const SignInForm: FunctionComponent = () => {
       <h2>Sign In</h2>
       <div class="fields-wrapper">
         <Label class="field-label" setup={setup.login.label}>Login</Label>
-        <TextInput class="text-input" setup={setup.login.input} />
+        <TextInput class="text-input" setup={setup.login.input} placeholder="Enter your login" />
         <ErrorHint class="error-hint" setup={setup.login.error} />
 
         <Label class="field-label" setup={setup.password.label}>Password</Label>
-        <PasswordField setup={setup.password.input} />
+        <PasswordField setup={setup.password.input} placeholder="Enter your password" />
         <ErrorHint class="error-hint" setup={setup.password.error} />
       </div>
       <button type="submit">Sign In</button>

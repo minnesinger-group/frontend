@@ -2,12 +2,11 @@ import { FunctionComponent } from 'preact';
 import { useState } from 'preact/hooks';
 import { memo } from 'preact/compat';
 
-import { TextInput, TextInputSetup } from '@/form/components/Input';
+import { TextInput, TextInputProps } from '@/form/components/Input';
 
 import './password-field.styl';
 
-interface PasswordFieldProps {
-  setup: TextInputSetup;
+interface PasswordFieldProps extends TextInputProps {
 }
 
 interface VisibilityIconProps {
@@ -32,7 +31,7 @@ const VisibilityIcon: FunctionComponent<VisibilityIconProps> = ({ isShowing, tog
   );
 };
 
-const PasswordField: FunctionComponent<PasswordFieldProps> = memo(({ setup }) => {
+const PasswordField: FunctionComponent<PasswordFieldProps> = memo(({ setup, ...props }) => {
   const [isShowing, setShowing] = useState(false);
 
   const handleToggleShowing = () => {
@@ -41,7 +40,7 @@ const PasswordField: FunctionComponent<PasswordFieldProps> = memo(({ setup }) =>
 
   return (
     <label class="password-field-root" for={setup.id}>
-      <TextInput setup={setup} type={isShowing ? 'text' : 'password'} />
+      <TextInput setup={setup} type={isShowing ? 'text' : 'password'} {...props} />
       <VisibilityIcon isShowing={isShowing} toggleShowing={handleToggleShowing} />
     </label>
   );

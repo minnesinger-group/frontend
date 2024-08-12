@@ -4,7 +4,7 @@ import { Form, useForm, buildFormConfig } from '@/form';
 import { Label, TextInput, ErrorHint } from '@/form/components';
 import {
   buildValidator,
-  isAlwaysValid, isNotEmpty, isNotNull, isNull, minLength,
+  isAlwaysValid, isNotEmpty, isNotNull, isNull, isEmpty, minLength,
   error, success, FieldValidateResult,
 } from '@/form/validation';
 import PasswordField from './PasswordField';
@@ -21,12 +21,14 @@ const arePasswordsMatch = (pwd1: string, pwd2: string | null): FieldValidateResu
 const registerLiveValidator = buildValidator(registerForm, {
     login: isAlwaysValid(),
     password: isNull<string>()
+      .or(isEmpty())
       .or(minLength(8)
         .and((value, { repeatedPassword }) =>
-          repeatedPassword === null ? success(value) : arePasswordsMatch(value, repeatedPassword),
+          !repeatedPassword ? success(value) : arePasswordsMatch(value, repeatedPassword),
         ),
       ),
     repeatedPassword: isNull<string>()
+      .or(isEmpty())
       .or((value, { password }) => arePasswordsMatch(value, password)),
   },
 );
@@ -56,15 +58,15 @@ const RegisterForm: FunctionComponent = () => {
       <h2>Create Account</h2>
       <div class="fields-wrapper">
         <Label class="field-label" setup={setup.login.label}>Login</Label>
-        <TextInput class="text-input" setup={setup.login.input} />
+        <TextInput class="text-input" setup={setup.login.input} placeholder="Create a login" />
         <ErrorHint class="error-hint" setup={setup.login.error} />
 
         <Label class="field-label" setup={setup.password.label}>Password</Label>
-        <PasswordField setup={setup.password.input} />
+        <PasswordField setup={setup.password.input} placeholder="Create a password" />
         <ErrorHint class="error-hint" setup={setup.password.error} />
 
         <Label setup={setup.repeatedPassword.label} class="field-label">Confirm Password</Label>
-        <PasswordField setup={setup.repeatedPassword.input} />
+        <PasswordField setup={setup.repeatedPassword.input} placeholder="Re-enter password" />
         <ErrorHint class="error-hint" setup={setup.repeatedPassword.error} />
       </div>
       <button type="submit">Sign Up</button>

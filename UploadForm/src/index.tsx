@@ -111,20 +111,20 @@ const TrackUploadForm: FunctionComponent = () => {
           onResetPreview={onResetPreview}
         />
         <div class="fields-wrapper">
-          <Label setup={setup.title.label}>Title</Label>
-          <TextInput setup={setup.title.input} />
+          <Label setup={setup.title.label}>Title*</Label>
+          <TextInput setup={setup.title.input} placeholder="Enter title" />
           <ErrorHint class="error-hint" setup={setup.title.error} />
 
           <Label setup={setup.artists.label}>Artists</Label>
-          <TextInput setup={setup.artists.input} />
+          <TextInput setup={setup.artists.input} placeholder="Enter artist names" />
           <ErrorHint class="error-hint" setup={setup.artists.error} />
 
           <Label setup={setup.album.label}>Album</Label>
-          <TextInput setup={setup.album.input} />
+          <TextInput setup={setup.album.input} placeholder="Enter album title" />
           <ErrorHint class="error-hint" setup={setup.album.error} />
 
-          <Label setup={setup.year.label}>Year</Label>
-          <NumberInput setup={setup.year.input} />
+          <Label setup={setup.year.label}>Release Year</Label>
+          <NumberInput setup={setup.year.input} placeholder="Enter release year" />
           <ErrorHint class="error-hint" setup={setup.year.error} />
         </div>
         <button type="submit">Upload</button>

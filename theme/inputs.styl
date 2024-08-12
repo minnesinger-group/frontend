@@ -1,3 +1,5 @@
+@require "utils/mixins"
+
 .input-label
   color var(--text-color)
   font-size 18px
@@ -26,6 +28,11 @@
 
   &[data-valid=false]
     border-color var(--error-color)
+
+  &::placeholder
+    font-size 0.8em
+    transform: translateY(-0.1em);
+    color darken(var(--text-color), 0.7)
 
 .error-hint
   color var(--error-color)
