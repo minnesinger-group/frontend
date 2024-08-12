@@ -1,12 +1,8 @@
 import { FunctionComponent } from 'preact';
 
 import { Form, useForm, buildFormConfig } from '@/form';
-import { Label, TextInput } from '@/form/components';
-import {
-  buildValidator, emptyValidator,
-  isNotEmpty, isNotNull,
-  ErrorHint, useValidation,
-} from '@/form/validation';
+import { Label, TextInput, ErrorHint } from '@/form/components';
+import { buildValidator, isNotEmpty, isNotNull } from '@/form/validation';
 import PasswordField from './PasswordField';
 
 const signInForm = buildFormConfig(fn => ({
@@ -20,28 +16,25 @@ const signInValidator = buildValidator(signInForm, {
 });
 
 const SignInForm: FunctionComponent = () => {
-  const { setup, values } = useForm(
+  const { setup } = useForm(
     signInForm,
-    () => {
-      const result = submit();
-      if (!result) {
-        console.log('Login: ', result);
-      }
-    });
-
-  const { results, submit } = useValidation(signInValidator, emptyValidator(signInForm), values);
+    values => {
+      console.log('Login: ', values);
+    },
+    { submitValidator: signInValidator },
+  );
 
   return (
     <Form setup={setup.form} class="form-content">
       <h2>Sign In</h2>
       <div class="fields-wrapper">
         <Label class="field-label" setup={setup.login.label}>Login</Label>
-        <TextInput class="text-input" setup={setup.login.input} isValid={results.login.success} />
-        <ErrorHint class="error-hint" result={results.login} />
+        <TextInput class="text-input" setup={setup.login.input} />
+        <ErrorHint class="error-hint" setup={setup.login.error} />
 
         <Label class="field-label" setup={setup.password.label}>Password</Label>
-        <PasswordField setup={setup.password.input} isValid={results.password.success} />
-        <ErrorHint class="error-hint" result={results.password} />
+        <PasswordField setup={setup.password.input} />
+        <ErrorHint class="error-hint" setup={setup.password.error} />
       </div>
       <button type="submit">Sign In</button>
     </Form>

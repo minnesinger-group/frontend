@@ -7,9 +7,16 @@
   width 100%
   margin 0 0 30px 0
 
-  &.invalid
+  &[data-valid=false]
     .label-inner-wrapper
       border-color var(--error-color)
+
+    .audio-title
+      color var(--error-color)
+
+      .audio-tooltip-icon
+        --icon-color var(--error-color)
+        color var(--text-color)
 
   &.hovered
     .label-inner-wrapper
@@ -36,13 +43,6 @@
     font-weight 300
     pointer-events none
     transition color 0.3s ease-in-out
-
-    &.invalid
-      color var(--error-color)
-
-      .audio-tooltip-icon
-        --icon-color var(--error-color)
-        color var(--text-color)
 
     &.clickable
       pointer-events auto

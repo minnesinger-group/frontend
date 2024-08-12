@@ -1,12 +1,11 @@
 import { FunctionComponent } from 'preact';
 
 import { Form, useForm, buildFormConfig } from '@/form';
-import { Label, TextInput } from '@/form/components';
+import { Label, TextInput, ErrorHint } from '@/form/components';
 import {
   buildValidator,
   isAlwaysValid, isNotEmpty, isNotNull, isNull, minLength,
   error, success, FieldValidateResult,
-  ErrorHint, useValidation,
 } from '@/form/validation';
 import PasswordField from './PasswordField';
 
@@ -42,32 +41,32 @@ const registerSubmitValidator = buildValidator(registerForm, {
 });
 
 const RegisterForm: FunctionComponent = () => {
-  const { setup, values } = useForm(
+  const { setup } = useForm(
     registerForm,
-    () => {
-      const result = submit();
-      if (!result) {
-        console.log('Register: ', result);
-      }
-    });
-
-  const { results, submit } = useValidation(registerSubmitValidator, registerLiveValidator, values);
+    values => {
+      console.log('Register: ', values);
+    },
+    {
+      submitValidator: registerSubmitValidator,
+      liveValidator: registerLiveValidator,
+    },
+  );
 
   return (
     <Form setup={setup.form} class="form-content">
       <h2>Create Account</h2>
       <div class="fields-wrapper">
         <Label class="field-label" setup={setup.login.label}>Login</Label>
-        <TextInput class="text-input" setup={setup.login.input} isValid={results.login.success} />
-        <ErrorHint class="error-hint" result={results.login} />
+        <TextInput class="text-input" setup={setup.login.input} />
+        <ErrorHint class="error-hint" setup={setup.login.error} />
 
         <Label class="field-label" setup={setup.password.label}>Password</Label>
-        <PasswordField setup={setup.password.input} isValid={results.password.success} />
-        <ErrorHint class="error-hint" result={results.password} />
+        <PasswordField setup={setup.password.input} />
+        <ErrorHint class="error-hint" setup={setup.password.error} />
 
         <Label setup={setup.repeatedPassword.label} class="field-label">Confirm Password</Label>
-        <PasswordField setup={setup.repeatedPassword.input} isValid={results.repeatedPassword.success} />
-        <ErrorHint class="error-hint" result={results.repeatedPassword} />
+        <PasswordField setup={setup.repeatedPassword.input} />
+        <ErrorHint class="error-hint" setup={setup.repeatedPassword.error} />
       </div>
       <button type="submit">Sign Up</button>
     </Form>

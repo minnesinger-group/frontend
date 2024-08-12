@@ -16,7 +16,6 @@ export interface AudioInputProps extends Omit<PreviewInputProps, 'isAudioDefault
   audio: UploadedFile | null;
   audioInput: FileInputProps['setup'];
   onResetAudio: () => Promise<void>;
-  isValid: boolean;
 }
 
 export const ResetIcon: FunctionComponent<ComponentProps<'span'>> = props => (
@@ -35,7 +34,7 @@ export const HelpIcon: FunctionComponent<{ class?: string; text: string }> = ({
 );
 
 const AudioInput: FunctionComponent<AudioInputProps> = memo(
-  ({ audio, audioInput, onResetAudio, preview, previewInput, onResetPreview, isValid }) => {
+  ({ audio, audioInput, onResetAudio, preview, previewInput, onResetPreview }) => {
     console.log('AudioInput: ', audio);
 
     const handleResetAudio = async (e: Event) => {
@@ -45,7 +44,7 @@ const AudioInput: FunctionComponent<AudioInputProps> = memo(
     };
 
     return (
-      <FileInput class={`audio-input-field${isValid ? '' : ' invalid'}`} setup={audioInput} onDragClass="hovered">
+      <FileInput class="audio-input-field" setup={audioInput} onDragClass="hovered">
         <div class="label-inner-wrapper">
           <AmplitudeChart audioFile={audio} />
           <PreviewInput
@@ -57,7 +56,7 @@ const AudioInput: FunctionComponent<AudioInputProps> = memo(
             onResetPreview={onResetPreview}
           />
         </div>
-        <p class={`audio-title${audio ? '' : ' clickable'}${isValid ? '' : ' invalid'}`}>
+        <p class={`audio-title${audio ? '' : ' clickable'}`}>
           {audio ? (
             <>
               {audio.name}

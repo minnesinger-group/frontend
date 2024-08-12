@@ -3,12 +3,11 @@ import { useCallback, useEffect } from 'preact/hooks';
 import parse from 'id3-parser';
 
 import { Form, useForm, buildFormConfig } from '@/form';
-import { Label, TextInput, NumberInput } from '@/form/components';
+import { Label, TextInput, NumberInput, ErrorHint } from '@/form/components';
 import { buildUploadedFile, UploadedFile } from '@/form/components/File';
 import {
-  buildValidator, emptyValidator,
+  buildValidator,
   isAlwaysValid, isNotEmpty, isNotNull,
-  ErrorHint, useValidation,
 } from '@/form/validation';
 import AudioInput from './AudioInput';
 import mimeDB from '../mime-images.json';
@@ -44,15 +43,11 @@ const trackUploadValidator = buildValidator(trackUploadForm, {
 const TrackUploadForm: FunctionComponent = () => {
   const { setup, values, setFieldValue, setFieldValues } = useForm(
     trackUploadForm,
-    async () => {
-      const result = submit();
-      if (result) {
-        console.log('Upload: ', result);
-      }
+    async values => {
+      console.log('Upload: ', values);
     },
+    { submitValidator: trackUploadValidator },
   );
-
-  const { results, submit } = useValidation(trackUploadValidator, emptyValidator(trackUploadForm), values);
 
   useEffect(() => {
     const parseMetadata = async (audio: UploadedFile) => {
@@ -110,27 +105,26 @@ const TrackUploadForm: FunctionComponent = () => {
           audio={values.audio}
           audioInput={setup.audio.input}
           onResetAudio={onResetAudio}
-          isValid={results.audio.success}
           preview={values.preview}
           previewInput={setup.preview.input}
           onResetPreview={onResetPreview}
         />
         <div class="fields-wrapper">
           <Label setup={setup.title.label}>Title</Label>
-          <TextInput setup={setup.title.input} isValid={results.title.success} />
-          <ErrorHint class="error-hint" result={results.title} />
+          <TextInput setup={setup.title.input} />
+          <ErrorHint class="error-hint" setup={setup.title.error} />
 
           <Label setup={setup.artists.label}>Artists</Label>
-          <TextInput setup={setup.artists.input} isValid={results.artists.success} />
-          <ErrorHint class="error-hint" result={results.artists} />
+          <TextInput setup={setup.artists.input} />
+          <ErrorHint class="error-hint" setup={setup.artists.error} />
 
           <Label setup={setup.album.label}>Album</Label>
-          <TextInput setup={setup.album.input} isValid={results.album.success} />
-          <ErrorHint class="error-hint" result={results.album} />
+          <TextInput setup={setup.album.input} />
+          <ErrorHint class="error-hint" setup={setup.album.error} />
 
           <Label setup={setup.year.label}>Year</Label>
-          <NumberInput setup={setup.year.input} isValid={results.year.success} />
-          <ErrorHint class="error-hint" result={results.year} />
+          <NumberInput setup={setup.year.input} />
+          <ErrorHint class="error-hint" setup={setup.year.error} />
         </div>
         <button type="submit">Upload</button>
       </Form>

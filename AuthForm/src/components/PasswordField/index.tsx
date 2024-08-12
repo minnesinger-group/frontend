@@ -8,7 +8,6 @@ import './password-field.styl';
 
 interface PasswordFieldProps {
   setup: TextInputSetup;
-  isValid?: boolean;
 }
 
 interface VisibilityIconProps {
@@ -33,7 +32,7 @@ const VisibilityIcon: FunctionComponent<VisibilityIconProps> = ({ isShowing, tog
   );
 };
 
-const PasswordField: FunctionComponent<PasswordFieldProps> = memo(({ setup, isValid }) => {
+const PasswordField: FunctionComponent<PasswordFieldProps> = memo(({ setup }) => {
   const [isShowing, setShowing] = useState(false);
 
   const handleToggleShowing = () => {
@@ -42,7 +41,7 @@ const PasswordField: FunctionComponent<PasswordFieldProps> = memo(({ setup, isVa
 
   return (
     <label class="password-field-root" for={setup.id}>
-      <TextInput setup={setup} type={isShowing ? 'text' : 'password'} isValid={isValid} />
+      <TextInput setup={setup} type={isShowing ? 'text' : 'password'} />
       <VisibilityIcon isShowing={isShowing} toggleShowing={handleToggleShowing} />
     </label>
   );
